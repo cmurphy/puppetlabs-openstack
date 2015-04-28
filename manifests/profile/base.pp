@@ -6,12 +6,6 @@ class openstack::profile::base {
   # everyone also needs to be on the same clock
   include ::ntp
 
-  # all nodes need the OpenStack repository
-  class { '::openstack::resources::repo': }
-
-  # database anchor
-  anchor { 'database-service': }
-
   $management_network = $::openstack::config::network_management
   $management_address = ip_for_network($management_network)
   $controller_management_address = $::openstack::config::controller_address_management

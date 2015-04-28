@@ -1,4 +1,15 @@
-class openstack::resources::repo(
+# == Class: openstack::repo
+#
+# This class determines which repositories are needed based on the operating
+# system and includes the relevant repo class from openstack_extras::repo.
+#
+# == Parameters:
+#
+# [*release*]
+#   (optional) The codename for the release to install.
+#   Defaults to 'juno'
+#
+class openstack::repo(
   $release = 'juno',
 ){
   if $::osfamily == 'Debian' {

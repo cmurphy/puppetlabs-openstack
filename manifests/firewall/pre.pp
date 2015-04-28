@@ -1,6 +1,6 @@
 # Starts up standard firewall rules. Pre-runs
 
-class openstack::profile::firewall::pre {
+class openstack::firewall::pre {
 
   # Set up the initial firewall rules for all nodes
   firewallchain { 'INPUT:filter:IPv4':

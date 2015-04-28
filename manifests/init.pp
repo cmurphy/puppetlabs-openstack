@@ -452,7 +452,7 @@ class openstack (
 ) {
   if $use_hiera {
     class { '::openstack::config':
-      region                        => hiera(openstack::region),
+      region                        => hiera(openstack::region), # openstack::auth_file::region_name
       network_api                   => hiera(openstack::network::api),
       networks                      => hiera(openstack::networks, {}),
       subnets                       => hiera(openstack::subnets, {}),
@@ -461,11 +461,11 @@ class openstack (
       network_external              => hiera(openstack::network::external),
       network_management            => hiera(openstack::network::management),
       network_data                  => hiera(openstack::network::data),
-      controller_address_api        => hiera(openstack::controller::address::api),
-      controller_address_management => hiera(openstack::controller::address::management),
+      controller_address_api        => hiera(openstack::controller::address::api), # openstack::auth_file::auth_url (part), openstack::mysql::bind_address
+      controller_address_management => hiera(openstack::controller::address::management), # openstack::memcache::listen_ip
       storage_address_api           => hiera(openstack::storage::address::api),
       storage_address_management    => hiera(openstack::storage::address::management),
-      mysql_root_password           => hiera(openstack::mysql::root_password),
+      mysql_root_password           => hiera(openstack::mysql::root_password), # openstack::mysql::root_password
       mysql_service_password        => hiera(openstack::mysql::service_password),
       mysql_allowed_hosts           => hiera(openstack::mysql::allowed_hosts),
       mysql_user_keystone           => pick(hiera(openstack::mysql::keystone::user, undef), 'keystone'),
@@ -485,7 +485,7 @@ class openstack (
       rabbitmq_password             => hiera(openstack::rabbitmq::password),
       keystone_admin_token          => hiera(openstack::keystone::admin_token),
       keystone_admin_email          => hiera(openstack::keystone::admin_email),
-      keystone_admin_password       => hiera(openstack::keystone::admin_password),
+      keystone_admin_password       => hiera(openstack::keystone::admin_password), # openstack::auth_file::keystone_admin_password
       keystone_tenants              => hiera(openstack::keystone::tenants),
       keystone_users                => hiera(openstack::keystone::users),
       keystone_use_httpd            => hiera(openstack::keystone::use_httpd, false),

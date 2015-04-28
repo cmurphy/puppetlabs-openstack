@@ -8,6 +8,5 @@ define openstack::resources::database (
     dbname        => $title,
     allowed_hosts => $::openstack::config::mysql_allowed_hosts,
     mysql_module  => '2.2',
-    require       => Anchor['database-service'],
   }
 }

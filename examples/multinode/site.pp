@@ -10,7 +10,8 @@ node 'puppet' {
 }
 
 node 'control.localdomain' {
-  include ::openstack::role::controller
+#  include ::openstack::role::controller
+  include ::role::openstack::controller
 }
 
 node 'storage.localdomain' {
